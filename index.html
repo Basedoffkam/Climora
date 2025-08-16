@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Climora - A Nest Security Company</title>
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --nest-blue: #0076a0;
+            --nest-dark: #1a2327;
+            --climora-orange: #ff6a00;
+            --off-white: #f5f5f5;
+            --text-gray: #6b7280;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: var(--off-white);
+            color: var(--nest-dark);
+        }
+
+        .bg-nest-blue { background-color: var(--nest-blue); }
+        .text-nest-blue { color: var(--nest-blue); }
+        .bg-nest-dark { background-color: var(--nest-dark); }
+        .text-nest-dark { color: var(--nest-dark); }
+        .bg-climora-orange { background-color: var(--climora-orange); }
+        .text-climora-orange { color: var(--climora-orange); }
+        .bg-off-white { background-color: var(--off-white); }
+        .text-text-gray { color: var(--text-gray); }
+        
+        .custom-shadow {
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1), 0 5px 10px -5px rgba(0,0,0,0.04);
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        /* Responsive Scrollbar */
+        .overflow-y-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+        .overflow-y-scroll::-webkit-scrollbar-track {
+            background: var(--off-white);
+            border-radius: 10px;
+        }
+        .overflow-y-scroll::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 10px;
+        }
+        .overflow-y-scroll::-webkit-scrollbar-thumb:hover {
+            background: #999;
+        }
+
+        /* Floating Animation for Hero Image */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* Pulsing Shadow Animation for CTA Button */
+        @keyframes pulse-shadow {
+            0%, 100% { box-shadow: 0 10px 20px -5px rgba(0,0,0,0.1), 0 5px 10px -5px rgba(0,0,0,0.04); }
+            50% { box-shadow: 0 15px 30px rgba(0,0,0,0.2), 0 8px 15px -5px rgba(0,0,0,0.08); }
+        }
+        .animate-pulse-shadow {
+            animation: pulse-shadow 2s ease-in-out infinite;
+        }
+        
+        /* New: Icon pulse on hover for feature cards */
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .feature-icon-wrapper:hover i {
+            animation: icon-pulse 0.5s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-white sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto px-4 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#home" class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-nest-blue flex items-center justify-center text-white font-bold text-lg">C</div>
+                <span class="text-2xl font-bold text-nest-dark">Climora</span>
+            </a>
+            
+            <!-- Navigation Links and CTA Button -->
+            <nav class="hidden md:flex items-center space-x-8 text-gray-700 font-semibold">
+                <a href="#home" class="hover:text-nest-blue transition-colors">Home</a>
+                <a href="#features" class="hover:text-nest-blue transition-colors">Features</a>
+                <a href="#services" class="hover:text-nest-blue transition-colors">Services</a>
+                <a href="#trust" class="hover:text-nest-blue transition-colors">Trust</a>
+                <a href="#contact" class="hover:text-nest-blue transition-colors">Contact</a>
+                <a href="#contact" class="px-6 py-2 bg-climora-orange text-white font-semibold rounded-full hover:bg-nest-blue transition-colors custom-shadow animate-pulse-shadow">
+                    Get a Free Quote
+                </a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-2xl text-nest-dark focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu (Hidden) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg py-4">
+            <nav class="flex flex-col items-center space-y-6 text-gray-700 font-semibold">
+                <a href="#home" class="hover:text-nest-blue transition-colors" onclick="toggleMobileMenu()">Home</a>
+                <a href="#features" class="hover:text-nest-blue transition-colors" onclick="toggleMobileMenu()">Features</a>
+                <a href="#services" class="hover:text-nest-blue transition-colors" onclick="toggleMobileMenu()">Services</a>
+                <a href="#trust" class="hover:text-nest-blue transition-colors" onclick="toggleMobileMenu()">Trust</a>
+                <a href="#contact" class="hover:text-nest-blue transition-colors" onclick="toggleMobileMenu()">Contact</a>
+                <a href="#contact" class="px-6 py-2 bg-climora-orange text-white font-semibold rounded-full hover:bg-nest-blue transition-colors">
+                    Get a Free Quote
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="bg-off-white py-20 md:py-32">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-12">
+                <!-- Left Content -->
+                <div class="md:w-1/2 text-center md:text-left">
+                    <p class="text-sm font-semibold text-nest-blue uppercase mb-2">A Nest Security Company</p>
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-nest-dark leading-tight mb-4">
+                        Effortless Protection, Total Peace of Mind
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto md:mx-0">
+                        Climora provides cutting-edge security solutions designed for modern living. Protect what matters most with our smart, reliable systems, powered by Nest.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="w-full sm:w-auto px-8 py-3 bg-nest-blue text-white font-semibold rounded-full hover:bg-nest-dark transition-colors custom-shadow">
+                            Request a Consultation
+                        </a>
+                        <a href="#services" class="w-full sm:w-auto px-8 py-3 border-2 border-nest-blue text-nest-blue font-semibold rounded-full hover:bg-nest-blue hover:text-white transition-colors">
+                            Learn About Services
+                        </a>
+                    </div>
+                </div>
+                <!-- Right Image -->
+                <div class="md:w-1/2 flex justify-center md:justify-end">
+                    <!-- Updated with a more realistic security system image and a fallback -->
+                    <img src="https://images.unsplash.com/photo-1577907535492-4ab8f23789d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNlY3VyaXR5JTIwY2FtZXJhfGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60" 
+                         onerror="this.onerror=null; this.src='https://placehold.co/600x500/0076a0/ffffff?text=Modern+Security+System';" 
+                         alt="A modern security system with cameras and alarms" class="w-full max-w-lg h-auto rounded-3xl custom-shadow animate-float">
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="bg-white py-20 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm font-semibold text-climora-orange uppercase mb-2">Advanced Protection</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-nest-dark mb-4">
+                    Why Choose Climora?
+                </h2>
+                <p class="text-lg text-gray-text max-w-3xl mx-auto mb-12">
+                    Our systems combine the latest technology with professional service to provide you with complete control and peace of mind.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Feature Card 1 -->
+                    <div class="p-6 bg-off-white card rounded-2xl feature-icon-wrapper">
+                        <!-- Added feature-icon-wrapper class for hover animation -->
+                        <i class="fas fa-camera text-5xl text-nest-blue mb-4"></i>
+                        <h3 class="text-xl font-bold text-nest-dark mb-2">24/7 Monitoring</h3>
+                        <p class="text-gray-600 text-sm">Our team is always on watch, ready to respond to any threat, day or night.</p>
+                    </div>
+                    <!-- Feature Card 2 -->
+                    <div class="p-6 bg-off-white card rounded-2xl feature-icon-wrapper">
+                        <i class="fas fa-shield-alt text-5xl text-nest-blue mb-4"></i>
+                        <h3 class="text-xl font-bold text-nest-dark mb-2">Smart Nest Integration</h3>
+                        <p class="text-gray-600 text-sm">Control all your security devices seamlessly from one app, powered by Nest.</p>
+                    </div>
+                    <!-- Feature Card 3 -->
+                    <div class="p-6 bg-off-white card rounded-2xl feature-icon-wrapper">
+                        <i class="fas fa-lock text-5xl text-nest-blue mb-4"></i>
+                        <h3 class="text-xl font-bold text-nest-dark mb-2">Professional Installation</h3>
+                        <p class="text-gray-600 text-sm">Our certified experts ensure your system is installed correctly and efficiently.</p>
+                    </div>
+                    <!-- Feature Card 4 -->
+                    <div class="p-6 bg-off-white card rounded-2xl feature-icon-wrapper">
+                        <i class="fas fa-robot text-5xl text-nest-blue mb-4"></i>
+                        <h3 class="text-xl font-bold text-nest-dark mb-2">AI-Powered Detection</h3>
+                        <p class="text-gray-600 text-sm">Advanced AI recognizes people, pets, and packages to reduce false alarms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="bg-nest-dark py-20 md:py-24 text-white">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm font-semibold text-climora-orange uppercase mb-2">Our Offerings</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Tailored Security Solutions
+                </h2>
+                <p class="text-lg opacity-80 max-w-3xl mx-auto mb-12">
+                    Whether you need to secure a single family home or a large commercial space, we have a plan that fits your needs.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white rounded-2xl overflow-hidden card custom-shadow text-nest-dark">
+                        <!-- Updated with a realistic home security image and a fallback -->
+                        <img src="https://images.unsplash.com/photo-1587397985794-6b2170327f31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1a2327/ffffff?text=Home+Security';"
+                             alt="A residential home with a security camera mounted on the wall" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold my-2">Home Security Systems</h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Comprehensive protection for your family and home with smart alarms, cameras, and sensors.
+                            </p>
+                            <a href="#" class="inline-block px-4 py-2 bg-climora-orange text-white text-sm font-semibold rounded-full hover:bg-nest-blue transition-colors">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white rounded-2xl overflow-hidden card custom-shadow text-nest-dark">
+                        <!-- Updated with a realistic business security image and a fallback -->
+                        <img src="https://images.unsplash.com/photo-1558017482-05452d76632f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x400/1a2327/ffffff?text=Business+Security';"
+                             alt="An office building with a security system installed" class="w-full h-48 object-cover">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold my-2">Commercial Security</h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                Protect your business assets with scalable, enterprise-grade security solutions.
+                            </p>
+                            <a href="#" class="inline-block px-4 py-2 bg-climora-orange text-white text-sm font-semibold rounded-full hover:bg-nest-blue transition-colors">Learn More</a>
+                        </div>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white rounded-2xl overflow-hidden card custom-shadow text-nest-dark">
+                        <!-- Re-added height to avoid layout issues, but adjusted object-fit -->
+                        <img src="https://i.ibb.co/BKr0yGLG/Chat-GPT-Image-Aug-16-2025-05-27-12-AM.png"
+                             alt="A person at a security monitoring desk with multiple screens" class="w-full h-48 object-contain">
+                        <div class="p-6 text-left">
+                            <h3 class="text-xl font-bold my-2">Professional Monitoring</h3>
+                            <p class="text-sm text-gray-600 mb-4">
+                                24/7 expert monitoring and rapid response to any security event, ensuring continuous protection.
+                            </p>
+                            <a href="#" class="inline-block px-4 py-2 bg-climora-orange text-white text-sm font-semibold rounded-full hover:bg-nest-blue transition-colors">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Section (Testimonials) -->
+        <section id="trust" class="bg-white py-20 md:py-24">
+            <div class="container mx-auto px-4 text-center">
+                <p class="text-sm font-semibold text-climora-orange uppercase mb-2">Our Valued Customers</p>
+                <h2 class="text-3xl md:text-4xl font-bold text-nest-dark mb-12">
+                    Trusted by Thousands of Homeowners and Businesses
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-off-white p-8 rounded-2xl card">
+                        <p class="text-lg text-gray-700 mb-6 italic">"The Climora system gave me complete peace of mind. The integration with my Nest devices was flawless, and the professional service was top-notch. I highly recommend them!"</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <img src="https://placehold.co/60x60/0076a0/ffffff?text=JD" alt="John Doe" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-lg text-nest-dark">Jane Doe</h4>
+                                <p class="text-sm text-gray-600">Homeowner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-off-white p-8 rounded-2xl card">
+                        <p class="text-lg text-gray-700 mb-6 italic">"As a business owner, I need a reliable security partner. Climora's commercial solution is powerful and easy to use. I feel confident my business is secure, even when I'm not there."</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <img src="https://placehold.co/60x60/0076a0/ffffff?text=MK" alt="Michael Kelly" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-lg text-nest-dark">Michael Kelly</h4>
+                                <p class="text-sm text-gray-600">Business Owner</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-off-white p-8 rounded-2xl card">
+                        <p class="text-lg text-gray-700 mb-6 italic">"I was amazed by how quickly and professionally the team installed our new system. The app is intuitive and gives me instant alerts. Climora is the best choice for smart home security."</p>
+                        <div class="flex items-center justify-center space-x-4">
+                            <img src="https://placehold.co/60x60/0076a0/ffffff?text=SM" alt="Sarah Miller" class="w-12 h-12 rounded-full object-cover">
+                            <div>
+                                <h4 class="font-bold text-lg text-nest-dark">Sarah Miller</h4>
+                                <p class="text-sm text-gray-600">Apartment Renter</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <section id="contact" class="bg-nest-blue py-20 md:py-24 text-center text-white">
+            <div class="container mx-auto px-4 max-w-4xl">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Ready to Protect Your Property?
+                </h2>
+                <p class="text-lg opacity-80 mb-8">
+                    Contact us today for a free consultation and personalized quote.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#" class="w-full sm:w-auto px-8 py-3 bg-climora-orange text-white font-semibold rounded-full hover:bg-nest-dark transition-colors custom-shadow">
+                        Call Us Today
+                    </a>
+                    <a href="#" class="w-full sm:w-auto px-8 py-3 border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-nest-blue transition-colors">
+                        Email Us
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12">
+        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Footer About -->
+            <div>
+                <a href="#" class="flex items-center space-x-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-nest-blue flex items-center justify-center text-white font-bold text-sm">C</div>
+                    <span class="text-xl font-bold text-nest-dark">Climora</span>
+                </a>
+                <p class="text-sm text-gray-600 mb-4">
+                    Climora is a proud partner of Nest, providing smart and reliable security for your home and business.
+                </p>
+                <div class="flex space-x-4 text-lg text-gray-500">
+                    <a href="#" class="hover:text-nest-dark transition-colors"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="hover:text-nest-dark transition-colors"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="hover:text-nest-dark transition-colors"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="hover:text-nest-dark transition-colors"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <!-- Quick Links -->
+            <div>
+                <h4 class="font-bold text-lg text-nest-dark mb-4">Solutions</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="#services" class="hover:text-nest-blue transition-colors">Home Security</a></li>
+                    <li><a href="#services" class="hover:text-nest-blue transition-colors">Business Security</a></li>
+                    <li><a href="#services" class="hover:text-nest-blue transition-colors">24/7 Monitoring</a></li>
+                    <li><a href="#features" class="hover:text-nest-blue transition-colors">Nest Integration</a></li>
+                </ul>
+            </div>
+            <!-- Support -->
+            <div>
+                <h4 class="font-bold text-lg text-nest-dark mb-4">Support</h4>
+                <ul class="space-y-2 text-gray-600">
+                    <li><a href="#" class="hover:text-nest-blue transition-colors">FAQs</a></li>
+                    <li><a href="#" class="hover:text-nest-blue transition-colors">Support Center</a></li>
+                    <li><a href="#" class="hover:text-nest-blue transition-colors">Request Service</a></li>
+                </ul>
+            </div>
+            <!-- Newsletter -->
+            <div>
+                <h4 class="font-bold text-lg text-nest-dark mb-4">Newsletter</h4>
+                <p class="text-sm text-gray-600 mb-4">Stay secure with our latest tips and updates.</p>
+                <div class="flex rounded-full overflow-hidden custom-shadow">
+                    <input type="email" placeholder="Your email" class="w-full px-4 py-3 border-none focus:outline-none text-gray-800">
+                    <button class="bg-climora-orange text-white px-5 py-3 font-semibold hover:bg-nest-blue transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-200 text-center text-sm text-gray-500">
+            &copy; 2024 Climora. An official Nest partner.
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                // Only prevent default and smooth scroll if the link points to a specific section, not just #
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle logic
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        mobileMenuButton.addEventListener('click', toggleMobileMenu);
+
+        // Optional: Hide mobile menu on resize for larger screens
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                mobileMenu.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
